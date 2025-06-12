@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-export function LoginForm({ className, ...props }) {
+export function LoginForm({ className, isRegister, ...props }) {
   return (
     <form className={cn("flex flex-col gap-6", className)} {...props}>
       <div className="flex flex-col items-center gap-2 text-center">
@@ -30,7 +30,7 @@ export function LoginForm({ className, ...props }) {
           <Input id="password" type="password" required />
         </div>
         <Button type="submit" className="w-full">
-          Login
+          {isRegister ? "Sign up" : " Login"}
         </Button>
         <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
           <span className="bg-background text-muted-foreground relative z-10 px-2">
@@ -61,13 +61,16 @@ export function LoginForm({ className, ...props }) {
               d="M272 107.7c39.5-.6 77.3 14.1 106 40.5l79.1-79.1C417.5 25.2 346.4-.5 272 0 166.6 0 75.7 62.1 31.1 150.2l89.1 70.7C141.6 155.3 201.4 107.7 272 107.7z"
             />
           </svg>
-          Login with Goggle
+          {isRegister ? "Signup" : "Login"} with Google
         </Button>
       </div>
       <div className="text-center text-sm">
-        Don&apos;t have an account?{" "}
-        <a href="#" className="underline underline-offset-4">
-          Sign up
+        {isRegister ? "Already have an accounts ?" : "Don't have an account?"}
+        <a
+          href={isRegister ? "/login" : "register"}
+          className="underline underline-offset-4"
+        >
+          {isRegister ? " Login" : " Sign up"}
         </a>
       </div>
     </form>
